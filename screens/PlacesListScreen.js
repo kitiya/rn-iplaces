@@ -1,14 +1,34 @@
 import React from "react";
-import { Platform, View, Text, StyleSheet } from "react-native";
+import { Platform, View, Text, FlatList, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector } from "react-redux";
 
 import HeaderButton from "../components/HeaderButton";
+import PlaceItem from "../components/PlaceItem";
 
 const PlacesListScreen = (props) => {
+  const places = useSelector((state) => state.places.places);
+  // console.log(places);
   return (
-    <View style={styles.screen}>
-      <Text>PLACES LIST SCREEN</Text>
-    </View>
+    <FlatList
+      data={places}
+      keyExtractor={(item) => item.id}
+      renderItem={(itemData) => (
+        <PlaceItem
+          image={
+            "https://cdn.pixabay.com/photo/2020/06/23/14/08/wild-strawberry-5332677__340.jpg"
+          }
+          title={itemData.item.title}
+          address={null}
+          onSelect={() => {
+            props.navigation.navigate("PlaceDetail", {
+              placeTitle: itemData.item.title,
+              placeId: itemData.item.id,
+            });
+          }}
+        />
+      )}
+    />
   );
 };
 
