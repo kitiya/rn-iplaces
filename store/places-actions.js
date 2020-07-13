@@ -1,4 +1,5 @@
 import * as FileSystem from "expo-file-system";
+import { insertPlace } from "../helpers/db";
 
 export const ADD_PLACE = "ADD_PLACE";
 
@@ -15,11 +16,25 @@ export const addPlace = (title, image) => {
         from: image,
         to: newPath,
       });
+
+      // insert data to SQLite database
+      const dbResult = await insertPlace(
+        title,
+        newPath,
+        "Dummy address",
+        "43.6532",
+        "79.3832"
+      );
+
+      console.log(dbResult);
+
+      dispatch({
+        type: ADD_PLACE,
+        placeData: { title: title, image: newPath },
+      });
     } catch (error) {
       console.log(error);
       throw error;
     }
-
-    dispatch({ type: ADD_PLACE, placeData: { title: title, image: newPath } });
   };
 };
