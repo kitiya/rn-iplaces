@@ -15,9 +15,7 @@ const PlacesListScreen = (props) => {
       keyExtractor={(item) => item.id}
       renderItem={(itemData) => (
         <PlaceItem
-          image={
-            "https://cdn.pixabay.com/photo/2020/06/23/14/08/wild-strawberry-5332677__340.jpg"
-          }
+          image={itemData.item.imageUri}
           title={itemData.item.title}
           address={null}
           onSelect={() => {

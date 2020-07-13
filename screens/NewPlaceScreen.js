@@ -15,6 +15,7 @@ import Colors from "../constants/Colors";
 
 const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
 
   const dispatch = useDispatch();
 
@@ -23,8 +24,12 @@ const NewPlaceScreen = (props) => {
     setTitleValue(text);
   };
 
+  const imageTakenHandler = (imagePath) => {
+    setSelectedImage(imagePath);
+  };
+
   const savePlaceHandler = () => {
-    dispatch(placesAction.addPlace(titleValue));
+    dispatch(placesAction.addPlace(titleValue, selectedImage));
     props.navigation.goBack();
   };
 
@@ -37,7 +42,7 @@ const NewPlaceScreen = (props) => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
-        <ImgPicker />
+        <ImgPicker onImageTaken={imageTakenHandler} />
         <Button
           title="SavePlace"
           color={Colors.primary}
