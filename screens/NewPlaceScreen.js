@@ -5,12 +5,14 @@ import {
   Text,
   TextInput,
   Button,
+  SafeAreaView,
   StyleSheet,
 } from "react-native";
 import { useDispatch } from "react-redux";
 
 import * as placesAction from "../store/places-actions";
 import ImgPicker from "../components/ImgPicker";
+import LocationPicker from "../components/LocationPicker";
 import Colors from "../constants/Colors";
 
 const NewPlaceScreen = (props) => {
@@ -34,22 +36,27 @@ const NewPlaceScreen = (props) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.form}>
-        <Text style={styles.label}>Title</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={titleChangeHandler}
-          value={titleValue}
-        />
-        <ImgPicker onImageTaken={imageTakenHandler} />
-        <Button
-          title="SavePlace"
-          color={Colors.primary}
-          onPress={savePlaceHandler}
-        />
-      </View>
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollview}>
+        <View style={styles.form}>
+          <Text style={styles.label}>Title</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={titleChangeHandler}
+            value={titleValue}
+          />
+          <ImgPicker onImageTaken={imageTakenHandler} />
+          <LocationPicker />
+          <View style={styles.buttonWrapper}>
+            <Button
+              title="SavePlace"
+              color={Colors.primary}
+              onPress={savePlaceHandler}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -58,6 +65,13 @@ NewPlaceScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollView: {
+    backgroundColor: "pink",
+    marginHorizontal: 20,
+  },
   form: { margin: 30 },
   label: { fontSize: 18, marginBottom: 15 },
   textInput: {
@@ -66,6 +80,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingVertical: 4,
     paddingHorizontal: 2,
+  },
+  buttonWrapper: {
+    padding: 5,
+    borderColor: Colors.lightGray,
+    borderWidth: 1,
   },
 });
 
