@@ -43,30 +43,28 @@ const NewPlaceScreen = (props) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollview}>
-        <View style={styles.form}>
-          <Text style={styles.label}>Title</Text>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={titleChangeHandler}
-            value={titleValue}
+    <ScrollView style={styles.scrollview}>
+      <View style={styles.form}>
+        <Text style={styles.label}>Title</Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={titleChangeHandler}
+          value={titleValue}
+        />
+        <ImgPicker onImageTaken={imageTakenHandler} />
+        <LocationPicker
+          navigation={props.navigation}
+          onLocationPicked={locationPickedHandler}
+        />
+        <View style={styles.buttonWrapper}>
+          <Button
+            title="SavePlace"
+            color={Colors.primary}
+            onPress={savePlaceHandler}
           />
-          <ImgPicker onImageTaken={imageTakenHandler} />
-          <LocationPicker
-            navigation={props.navigation}
-            onLocationPicked={locationPickedHandler}
-          />
-          <View style={styles.buttonWrapper}>
-            <Button
-              title="SavePlace"
-              color={Colors.primary}
-              onPress={savePlaceHandler}
-            />
-          </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -75,9 +73,6 @@ NewPlaceScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   scrollView: {
     backgroundColor: "pink",
     marginHorizontal: 20,
