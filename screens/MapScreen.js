@@ -14,7 +14,7 @@ const MapScreen = (props) => {
   };
 
   const selectLocationHandler = (event) => {
-    console.log(event);
+    // console.log(event);
     setSelectedLocation({
       lat: event.nativeEvent.coordinate.latitude,
       lng: event.nativeEvent.coordinate.longitude,
