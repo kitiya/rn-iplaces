@@ -8,6 +8,10 @@ import Colors from "../constants/Colors";
 const ImgPicker = (props) => {
   const [pickedImage, setPickedImage] = useState();
   const verifyPermissions = async () => {
+    // const result = await Permissions.askAsync(
+    //   Permissions.CAMERA_ROLL,
+    //   Permissions.CAMERA
+    // );
     const result = await Camera.requestPermissionsAsync();
 
     if (result.status !== "granted") {

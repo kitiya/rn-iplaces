@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, View, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, StyleSheet } from "react-native";
 
 // import { MAP_API_KEY } from "react-native-dotenv";
 import { ENV } from "../constants/env";
